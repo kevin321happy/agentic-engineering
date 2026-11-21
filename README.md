@@ -4,7 +4,7 @@ English · [简体中文](README.zh-CN.md)
 
 **A framework in development for teams that want AI to write code without letting it approve its own work.** Engineers define the expected behavior and acceptable risk. A coding agent proposes a change. The framework is being built to decide, from test results and explicit approvals, whether that change can move forward.
 
-**Status: repository foundation.** You can install the Python package and run its repository checks today. The workflow engine, approval gates and coding-agent integrations are planned, not released. There is no runnable coding workflow yet.
+**Available in this checkout:** [typed models](src/agentic_engineering/core/models.py) for specs, artifacts, evidence and gate decisions; packaged [JSON Schemas](schemas/) for specs and evidence; and a [SQLite ledger](src/agentic_engineering/runtime/ledger.py) that restores the latest decision for a run after restart. It rejects a `GO` record that lists missing proof. It does **not** yet verify that proof is genuine, authorize writes or resume a complete coding workflow.
 
 ## What a gate is for
 
@@ -17,6 +17,51 @@ Suppose an agent changes a list screen to show an empty state. The empty-list te
 
 The design separates model suggestions from permission to act. A recorded approval should apply to a particular change, not grant permanent write access. Offline replay is planned so contributors can inspect both an approved run and a correctly blocked one without credentials.
 
+## System architecture
+
+This is the target design. Only the two boxes marked **implemented** exist today. The public core does not depend on project-specific integrations. Retrieved knowledge can suggest checks; it cannot satisfy them.
+
+```mermaid
+flowchart TD
+    Human["Engineer: spec and scoped approval"] --> Entry["CLI / agent integration"]
+    Entry --> Flow["Feature or bugfix workflow"] --> Runtime["Runtime: transitions, suspend, resume, replay"]
+    Models["Implemented: typed models and schemas"] --- Runtime
+    Runtime --> Agent["Coding agent: propose a patch"] --> Runtime
+    Pack["Optional project adapters and knowledge"] -.-> Agent
+    Runtime --> Policy["Evaluate scope, evidence and authorization"]
+    Human --> Policy
+    Policy -->|Authorized operation| Tools["Workspace, Git and test adapters"]
+    Tools -->|Actual diff and test results| Runtime
+    Policy --> Ledger["Implemented: decision ledger and checkpoint"]
+```
+
+## How a task moves through the platform (planned)
+
+```mermaid
+flowchart TD
+    Task{"Task type"} -->|Feature| Spec["Confirm requirements, acceptance cases and scope"]
+    Task -->|Bug| Cause["Reproduce failure, establish cause and identify unaffected paths"]
+    Spec --> Patch["Produce patch in restricted workspace"]
+    Cause --> Patch
+    Patch --> Scope{"Actual diff within approved scope?"}
+    Scope -->|No| Rescope["Narrow the patch or request new approval"] --> Patch
+    Scope -->|Yes| Verify["Run acceptance and regression checks"] --> Proof{"Sufficient passing evidence?"}
+    Proof -->|No| Block["NO_GO: report missing or failed checks"]
+    Block -->|Supply evidence| Verify
+    Proof -->|Yes| Review["Deliver patch and evidence for review; no automatic merge"]
+```
+
+## Development roadmap
+
+| Milestone | Acceptance test |
+| --- | --- |
+| M1.1 · Human approval and resume **(next)** | Restart while patch A is awaiting approval: it must remain pending. Its approval can be consumed only once and cannot authorize patch B. |
+| M1.2 · Permissions and offline replay | Deny unauthorized writes. Replay the same events without credentials or external side effects and reproduce the same decision. |
+| M2 · Feature workflow | Demonstrate the list example three ways: pass the correct patch, block missing regression coverage, and block an out-of-scope edit. |
+| M3 · Bugfix workflow | Show the original failure before the fix, a passing check afterward, and an unaffected control case. A high score cannot override missing evidence. |
+| M4 · CLI and evaluation | A new contributor can run, inspect, resume and replay both an allowed and a blocked case. Report raw counts for incorrect decisions and human interventions. |
+| M5 · Private extensions | Connect knowledge and tools through public interfaces without modifying the core or exposing private artifacts. |
+
 ## Try the current checkout
 
 From the repository root, with Python 3.11+ and `uv`:
@@ -26,6 +71,6 @@ uv sync --locked --extra dev
 uv run pytest -q
 ```
 
-These tests check the repository contract; they do **not** validate an AI-generated patch. For contribution checks see [Contributing](CONTRIBUTING.md). For what belongs in a project-specific integration rather than the public package, see [the public/private boundary](docs/architecture/public-private-boundary.md).
+These tests check the repository contract, schema consistency and [cross-process gate recovery](tests/unit/core/test_checkpoint.py); they do **not** validate an AI-generated patch. For contribution checks see [Contributing](CONTRIBUTING.md). For what belongs in a project-specific integration rather than the public package, see [the public/private boundary](docs/architecture/public-private-boundary.md).
 
 [Security](SECURITY.md) · [MIT license](LICENSE)
