@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 492" width="820" height="492" role="img" aria-labelledby="title" xml:lang="en"><title id="title">From task to review</title>
+<rect width="820" height="492" rx="12" fill="#f5f8fb"/>
+<g font-family="system-ui, PingFang SC, Microsoft YaHei, sans-serif">
+<text x="28" y="42" font-size="27" font-weight="700" fill="#173752">From task to review</text>
+<text x="28" y="74" font-size="16" font-weight="400" fill="#35577a">Planned workflow  /  two entry points, one verification path</text>
+<rect x="28" y="96" width="370" height="66" rx="6" fill="#e6edf3"/>
+<text x="44" y="123" font-size="20" font-weight="650" fill="#173752">Feature</text>
+<text x="44" y="148" font-size="16" font-weight="400" fill="#173752">Confirm scope and acceptance cases.</text>
+<rect x="422" y="96" width="370" height="66" rx="6" fill="#e6edf3"/>
+<text x="438" y="123" font-size="20" font-weight="650" fill="#173752">Bug fix</text>
+<text x="438" y="148" font-size="16" font-weight="400" fill="#173752">Reproduce failure and establish cause.</text>
+<path d="M213 162 V177 H607 V162 M410 177 V194" fill="none" stroke="#7891a5" stroke-width="2"/>
+<rect x="135" y="194" width="550" height="52" rx="6" fill="#dce7f0"/>
+<text x="157" y="227" font-size="20" font-weight="650" fill="#173752">Prepare a patch in a restricted workspace</text>
+<path d="M410 246 V264" fill="none" stroke="#7891a5" stroke-width="2"/>
+<rect x="135" y="264" width="550" height="69" rx="6" fill="#173752"/>
+<text x="157" y="292" font-size="20" font-weight="650" fill="white">Check scope, then verify behavior</text>
+<text x="157" y="318" font-size="16" font-weight="400" fill="#d8e6ee">Actual diff  →  acceptance tests  →  regression results</text>
+<path d="M410 333 V351 M213 366 V351 H607 V366" fill="none" stroke="#7891a5" stroke-width="2"/>
+<rect x="28" y="366" width="370" height="99" rx="6" fill="#faead8"/>
+<text x="44" y="395" font-size="21" font-weight="700" fill="#874a13">Hold</text>
+<text x="44" y="425" font-size="16" font-weight="400" fill="#173752">Out of scope? Narrow or reapprove.</text>
+<text x="44" y="450" font-size="16" font-weight="400" fill="#173752">Missing proof? Supply it and rerun.</text>
+<rect x="422" y="366" width="370" height="99" rx="6" fill="#d7eee8"/>
+<text x="438" y="395" font-size="21" font-weight="700" fill="#096a60">Ready for review</text>
+<text x="438" y="425" font-size="16" font-weight="400" fill="#173752">Deliver the patch with its evidence.</text>
+<text x="438" y="450" font-size="16" font-weight="400" fill="#173752">Merging still needs authorization.</text>
+</g></svg>

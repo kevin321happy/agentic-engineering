@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 474" width="820" height="474" role="img" aria-labelledby="title" xml:lang="en"><title id="title">System architecture</title>
+<rect width="820" height="474" rx="12" fill="#f5f8fb"/>
+<g font-family="system-ui, PingFang SC, Microsoft YaHei, sans-serif">
+<text x="28" y="42" font-size="27" font-weight="700" fill="#173752">System architecture</text>
+<text x="28" y="75" font-size="16" font-weight="400" fill="#35577a">Target design  /  responsibility by layer</text>
+<rect x="28" y="94" width="764" height="58" rx="6" fill="#e6edf3"/>
+<text x="44" y="127" font-size="17" font-weight="650" fill="#35577a">Design</text>
+<text x="182" y="117" font-size="18" font-weight="650" fill="#173752">Engineer + coding assistant</text>
+<text x="182" y="140" font-size="15" font-weight="400" fill="#173752">Define behavior and scope; propose a patch.</text>
+<rect x="28" y="158" width="764" height="58" rx="6" fill="#eef2f6"/>
+<text x="44" y="191" font-size="17" font-weight="650" fill="#35577a">Orchestrate</text>
+<text x="182" y="181" font-size="18" font-weight="650" fill="#173752">Feature and bugfix workflows</text>
+<text x="182" y="204" font-size="15" font-weight="400" fill="#173752">Coordinate steps, suspend, resume and replay.</text>
+<rect x="28" y="222" width="764" height="58" rx="6" fill="#e6edf3"/>
+<text x="44" y="255" font-size="17" font-weight="650" fill="#35577a">Authorize</text>
+<text x="182" y="245" font-size="18" font-weight="650" fill="#173752">Policy and human approval</text>
+<text x="182" y="268" font-size="15" font-weight="400" fill="#173752">Bind evidence and permission to a specific change.</text>
+<rect x="28" y="286" width="764" height="58" rx="6" fill="#eef2f6"/>
+<text x="44" y="319" font-size="17" font-weight="650" fill="#35577a">Execute</text>
+<text x="182" y="309" font-size="18" font-weight="650" fill="#173752">Workspace, Git and test adapters</text>
+<text x="182" y="332" font-size="15" font-weight="400" fill="#173752">Run authorized operations; return diffs and test results.</text>
+<rect x="28" y="358" width="764" height="67" rx="6" fill="#d7eee8"/>
+<text x="44" y="384" font-size="19" font-weight="700" fill="#096a60">Implemented foundation</text>
+<text x="44" y="410" font-size="17" font-weight="400" fill="#096a60">Typed protocols + schemas     /     SQLite gate ledger + checkpoint recovery</text>
+<text x="30" y="453" font-size="15" font-weight="400" fill="#35577a">Optional project knowledge informs the agent; it never grants permission.</text>
+</g></svg>

@@ -19,37 +19,13 @@
 
 ## 总体架构
 
-下图是目标架构；目前只有标注**已实现**的两个模块可用。公开核心不依赖项目专属集成。检索到的经验可以提示该测什么，不能替代测试证据。
+下图是目标架构；底部绿色区域标出当前已实现的基础能力。公开核心不依赖项目专属集成。检索到的经验可以提示该测什么，不能替代测试证据。
 
-```mermaid
-flowchart TD
-    Human["研发：定义规格、批准特定操作"] --> Entry["CLI / 编码助手入口"]
-    Entry --> Flow["需求开发或缺陷修复工作流"] --> Runtime["运行时：阶段推进、挂起、恢复、回放"]
-    Models["已实现：类型模型与 Schema"] --- Runtime
-    Runtime --> Agent["编码智能体：提出补丁"] --> Runtime
-    Pack["可选：项目适配器与知识库"] -.-> Agent
-    Runtime --> Policy["核对修改范围、证据和授权"]
-    Human --> Policy
-    Policy -->|仅执行获准操作| Tools["工作区、Git 和测试适配器"]
-    Tools -->|实际 Diff 和测试结果| Runtime
-    Policy --> Ledger["已实现：门禁决定账本与检查点"]
-```
+[![系统架构](docs/diagrams/architecture.zh-CN.svg)](docs/diagrams/architecture.zh-CN.svg)
 
 ## 开发任务如何流转（规划中）
 
-```mermaid
-flowchart TD
-    Task{"任务类型"} -->|需求| Spec["确认条款、验收场景和修改范围"]
-    Task -->|缺陷| Cause["复现故障、确认根因、列出须保持不变的路径"]
-    Spec --> Patch["在受限工作区生成补丁"]
-    Cause --> Patch
-    Patch --> Scope{"实际 Diff 在批准范围内？"}
-    Scope -->|否| Rescope["缩小补丁，或重新审批范围"] --> Patch
-    Scope -->|是| Verify["执行验收与回归检查"] --> Proof{"证据充分且必要检查通过？"}
-    Proof -->|否| Block["NO_GO：列明失败项和缺失证据"]
-    Block -->|补证后复验| Verify
-    Proof -->|是| Review["交付补丁和证据供评审，不自动合并"]
-```
+[![从任务到评审](docs/diagrams/workflow.zh-CN.svg)](docs/diagrams/workflow.zh-CN.svg)
 
 ## 开发路线与验收条件
 

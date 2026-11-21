@@ -19,37 +19,13 @@ The design separates model suggestions from permission to act. A recorded approv
 
 ## System architecture
 
-This is the target design. Only the two boxes marked **implemented** exist today. The public core does not depend on project-specific integrations. Retrieved knowledge can suggest checks; it cannot satisfy them.
+This is the target design. The green foundation band shows what exists today. The public core does not depend on project-specific integrations. Retrieved knowledge can suggest checks; it cannot satisfy them.
 
-```mermaid
-flowchart TD
-    Human["Engineer: spec and scoped approval"] --> Entry["CLI / agent integration"]
-    Entry --> Flow["Feature or bugfix workflow"] --> Runtime["Runtime: transitions, suspend, resume, replay"]
-    Models["Implemented: typed models and schemas"] --- Runtime
-    Runtime --> Agent["Coding agent: propose a patch"] --> Runtime
-    Pack["Optional project adapters and knowledge"] -.-> Agent
-    Runtime --> Policy["Evaluate scope, evidence and authorization"]
-    Human --> Policy
-    Policy -->|Authorized operation| Tools["Workspace, Git and test adapters"]
-    Tools -->|Actual diff and test results| Runtime
-    Policy --> Ledger["Implemented: decision ledger and checkpoint"]
-```
+[![System architecture](docs/diagrams/architecture.en.svg)](docs/diagrams/architecture.en.svg)
 
 ## How a task moves through the platform (planned)
 
-```mermaid
-flowchart TD
-    Task{"Task type"} -->|Feature| Spec["Confirm requirements, acceptance cases and scope"]
-    Task -->|Bug| Cause["Reproduce failure, establish cause and identify unaffected paths"]
-    Spec --> Patch["Produce patch in restricted workspace"]
-    Cause --> Patch
-    Patch --> Scope{"Actual diff within approved scope?"}
-    Scope -->|No| Rescope["Narrow the patch or request new approval"] --> Patch
-    Scope -->|Yes| Verify["Run acceptance and regression checks"] --> Proof{"Sufficient passing evidence?"}
-    Proof -->|No| Block["NO_GO: report missing or failed checks"]
-    Block -->|Supply evidence| Verify
-    Proof -->|Yes| Review["Deliver patch and evidence for review; no automatic merge"]
-```
+[![From task to review](docs/diagrams/workflow.en.svg)](docs/diagrams/workflow.en.svg)
 
 ## Development roadmap
 
