@@ -1,0 +1,53 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "evidence_id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+      "title": "Evidence Id",
+      "type": "string"
+    },
+    "kind": {
+      "enum": [
+        "test",
+        "diff",
+        "observation"
+      ],
+      "title": "Kind",
+      "type": "string"
+    },
+    "claim": {
+      "minLength": 1,
+      "title": "Claim",
+      "type": "string"
+    },
+    "source": {
+      "minLength": 1,
+      "title": "Source",
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "passed",
+        "failed",
+        "unverified"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "collected_at": {
+      "format": "date-time",
+      "title": "Collected At",
+      "type": "string"
+    }
+  },
+  "required": [
+    "evidence_id",
+    "kind",
+    "claim",
+    "source",
+    "status",
+    "collected_at"
+  ],
+  "title": "Evidence",
+  "type": "object"
+}
