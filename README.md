@@ -6,6 +6,14 @@ English · [简体中文](README.zh-CN.md)
 
 **Available in this checkout:** [typed models](src/agentic_engineering/core/models.py) for specs, artifacts, evidence and gate decisions; packaged [JSON Schemas](schemas/) for specs and evidence; and a [SQLite ledger](src/agentic_engineering/runtime/ledger.py) that restores the latest decision for a run after restart. It rejects a `GO` record that lists missing proof. It does **not** yet verify that proof is genuine, authorize writes or resume a complete coding workflow.
 
+## Where the approach comes from
+
+This platform turns the author's experience delivering features and fixing defects in `agent-hub` into reusable engineering standards for teams using AI. Its `story-gate` workflow traced requirements back to their sources and established an agreed feature baseline. Its `bugfix-gate` workflow checked root-cause evidence, audited the actual diff and verified that existing behavior still worked.
+
+The design draws on OpenSpec for managing changes to specifications and on Superpowers for planning, test-driven development and verification. Engineers define expected behavior, acceptance cases and scope in a spec. The intended workflow takes that approved baseline through implementation and review, with each requirement linked to the change and its regression results.
+
+For example, an engineer approves an empty-state message for a list. A later request adds a retry button. In the planned workflow, that interaction gets a revised spec, an acceptance case and a new scope approval. The earlier approval stays attached to the original baseline.
+
 ## What a gate is for
 
 Suppose an agent changes a list screen to show an empty state. The empty-list test passes, but there is no result for a list **with** items. The proposed feature workflow would keep the change pending and report the missing regression check. A plausible explanation from the agent is not a test result.
@@ -31,7 +39,7 @@ This is the target design. The outlined foundation section shows what exists tod
 
 | Milestone | Acceptance test |
 | --- | --- |
-| M1.1 · Human approval and resume **(next)** | Restart while patch A is awaiting approval: it must remain pending. Its approval can be consumed only once and cannot authorize patch B. |
+| M1.1 · Human approval and resume **(next)** | Recover the pending spec revision after restart. Adding a retry button requires approval of the revised scope. A patch execution grant applies to one version and can be consumed once. |
 | M1.2 · Permissions and offline replay | Deny unauthorized writes. Replay the same events without credentials or external side effects and reproduce the same decision. |
 | M2 · Feature workflow | Demonstrate the list example three ways: pass the correct patch, block missing regression coverage, and block an out-of-scope edit. |
 | M3 · Bugfix workflow | Show the original failure before the fix, a passing check afterward, and an unaffected control case. A high score cannot override missing evidence. |
