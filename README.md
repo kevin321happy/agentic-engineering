@@ -19,13 +19,13 @@ The design separates model suggestions from permission to act. A recorded approv
 
 ## System architecture
 
-This is the target design. The green foundation band shows what exists today. The public core does not depend on project-specific integrations. Retrieved knowledge can suggest checks; it cannot satisfy them.
+This is the target design. The outlined foundation section shows what exists today. The public core does not depend on project-specific integrations. Retrieved knowledge can suggest checks; it cannot satisfy them.
 
-[![System architecture](docs/diagrams/architecture.en.svg)](docs/diagrams/architecture.en.svg)
+![System architecture](docs/diagrams/architecture.en.svg)
 
 ## How a task moves through the platform (planned)
 
-[![From task to review](docs/diagrams/workflow.en.svg)](docs/diagrams/workflow.en.svg)
+![From task to review](docs/diagrams/workflow.en.svg)
 
 ## Development roadmap
 

@@ -19,13 +19,13 @@
 
 ## 总体架构
 
-下图是目标架构；底部绿色区域标出当前已实现的基础能力。公开核心不依赖项目专属集成。检索到的经验可以提示该测什么，不能替代测试证据。
+下图是目标架构；底部实线框标出当前已实现的基础能力。公开核心不依赖项目专属集成。检索到的经验可以提示该测什么，不能替代测试证据。
 
-[![系统架构](docs/diagrams/architecture.zh-CN.svg)](docs/diagrams/architecture.zh-CN.svg)
+![系统架构](docs/diagrams/architecture.zh-CN.svg)
 
 ## 开发任务如何流转（规划中）
 
-[![从任务到评审](docs/diagrams/workflow.zh-CN.svg)](docs/diagrams/workflow.zh-CN.svg)
+![从任务到评审](docs/diagrams/workflow.zh-CN.svg)
 
 ## 开发路线与验收条件
 
