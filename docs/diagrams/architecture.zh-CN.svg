@@ -1,26 +1,67 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 474" width="820" height="474" role="img" aria-labelledby="title" xml:lang="zh-CN"><title id="title">系统架构</title>
-<rect width="820" height="474" rx="12" fill="#fff"/>
-<g font-family="system-ui, PingFang SC, Microsoft YaHei, sans-serif">
-<text x="28" y="42" font-size="27" font-weight="700" fill="#000">系统架构</text>
-<text x="28" y="75" font-size="16" font-weight="400" fill="#000">目标设计  /  按职责分层</text>
-<path d="M28 152H792" stroke="#000" stroke-opacity=".18"/>
-<text x="44" y="127" font-size="17" font-weight="650" fill="#000">定义</text>
-<text x="182" y="117" font-size="18" font-weight="650" fill="#000">研发与编码助手</text>
-<text x="182" y="140" font-size="15" font-weight="400" fill="#000">研发定义行为和范围；智能体提出补丁。</text>
-<path d="M28 216H792" stroke="#000" stroke-opacity=".18"/>
-<text x="44" y="191" font-size="17" font-weight="650" fill="#000">编排</text>
-<text x="182" y="181" font-size="18" font-weight="650" fill="#000">需求与缺陷工作流</text>
-<text x="182" y="204" font-size="15" font-weight="400" fill="#000">运行时推进阶段、挂起、恢复与回放。</text>
-<path d="M28 280H792" stroke="#000" stroke-opacity=".18"/>
-<text x="44" y="255" font-size="17" font-weight="650" fill="#000">授权</text>
-<text x="182" y="245" font-size="18" font-weight="650" fill="#000">策略与人工审批</text>
-<text x="182" y="268" font-size="15" font-weight="400" fill="#000">针对特定变更核验证据与操作权限。</text>
-<path d="M28 344H792" stroke="#000" stroke-opacity=".18"/>
-<text x="44" y="319" font-size="17" font-weight="650" fill="#000">执行</text>
-<text x="182" y="309" font-size="18" font-weight="650" fill="#000">工作区、Git 与测试适配器</text>
-<text x="182" y="332" font-size="15" font-weight="400" fill="#000">仅执行获准操作，返回实际 Diff 和测试结果。</text>
-<rect x="28" y="358" width="764" height="67" rx="6" fill="#fff" stroke="#000"/>
-<text x="44" y="384" font-size="19" font-weight="700" fill="#000">已实现的基础能力</text>
-<text x="44" y="410" font-size="17" font-weight="400" fill="#000">类型协议与 Schema     /     SQLite 门禁账本与检查点恢复</text>
-<text x="30" y="453" font-size="15" font-weight="400" fill="#000">可选项目知识仅供智能体参考，不授予执行权限。</text>
-</g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 730" width="820" height="730" role="img" aria-labelledby="title desc" xml:lang="zh-CN">
+  <title id="title">企业级编码交付架构</title>
+  <desc id="desc">OpenSpec 汇入规格。Agentic Engineering 管理人工审批、一次性授权和交付门禁。编码 Agent 和 CI 提供实际改动与验证证据。图底部标出当前实现。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M1 1l6 3-6 3" fill="none" stroke="#222" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <style>
+      .title { font-size: 27px; font-weight: 700; }
+      .section { font-size: 14px; font-weight: 650; }
+      .node { font-size: 17px; font-weight: 650; }
+      .body { font-size: 14px; font-weight: 400; }
+      .box { fill: #fff; stroke: #999; }
+      .edge { fill: none; stroke: #222; stroke-width: 1.35; marker-end: url(#arrow); }
+    </style>
+  </defs>
+  <rect width="820" height="730" rx="12" fill="#fff"/>
+  <g font-family="system-ui, PingFang SC, Microsoft YaHei, sans-serif" fill="#181818">
+    <text class="title" x="36" y="42">企业级编码交付架构</text>
+    <text class="body" x="36" y="70">目标架构 · 从规格、受限实施到评审</text>
+
+    <rect class="box" x="36" y="96" width="748" height="72" rx="5"/>
+    <text class="node" x="52" y="126">工单 / PRD / 缺陷报告 → OpenSpec</text>
+    <text class="body" x="52" y="150">唯一规格入口 · 增量规格、验收场景、实施任务</text>
+
+    <text class="section" x="36" y="212">交付控制 · Agentic Engineering</text>
+    <text class="section" x="434" y="212">执行与验证</text>
+    <path class="edge" d="M365 168v60"/>
+    <path class="edge" d="M386 262h48"/>
+    <path class="edge" d="M609 296v12H211v12"/>
+    <path class="edge" d="M386 354h48"/>
+    <path class="edge" d="M609 388v24"/>
+    <path class="edge" d="M434 446h-48"/>
+    <path class="edge" d="M211 480v46"/>
+    <path class="edge" d="M211 504h398v22"/>
+    <rect class="box" x="36" y="228" width="350" height="68" rx="5"/>
+    <text class="node" x="52" y="256">工作流编排与人工审批</text>
+    <text class="body" x="52" y="279">确认当前规格版本与修改范围</text>
+    <rect class="box" x="434" y="228" width="350" height="68" rx="5"/>
+    <text class="node" x="450" y="256">编码 Agent · 沙箱内运行 TDD</text>
+    <text class="body" x="450" y="279">验证预期失败、实现通过和回归</text>
+    <rect class="box" x="36" y="320" width="350" height="68" rx="5"/>
+    <text class="node" x="52" y="348">补丁执行授权</text>
+    <text class="body" x="52" y="371">绑定规格版本与补丁摘要 · 仅消费一次</text>
+    <rect class="box" x="434" y="320" width="350" height="68" rx="5"/>
+    <text class="node" x="450" y="348">受限执行器</text>
+    <text class="body" x="450" y="371">应用获准补丁 · 生成候选提交与实际 Diff</text>
+    <rect class="box" x="36" y="412" width="350" height="68" rx="5"/>
+    <text class="node" x="52" y="440">交付门禁</text>
+    <text class="body" x="52" y="463">核对实际 Diff、验收与回归证据</text>
+    <rect class="box" x="434" y="412" width="350" height="68" rx="5"/>
+    <text class="node" x="450" y="440">CI · 独立构建与复验</text>
+    <text class="body" x="450" y="463">证据绑定实际候选提交</text>
+
+    <rect class="box" x="36" y="526" width="350" height="82" rx="5"/>
+    <text class="node" x="52" y="552">GO · 交付评审包</text>
+    <text class="body" x="52" y="574">规格、Diff、证据和门禁决定</text>
+    <text class="body" x="52" y="595">人工代码评审与合并授权</text>
+    <rect class="box" x="434" y="526" width="350" height="82" rx="5"/>
+    <text class="node" x="450" y="552">NO_GO · 暂停交付</text>
+    <text class="body" x="450" y="574">补齐证据、缩小范围或重新审批</text>
+
+    <rect x="36" y="638" width="748" height="67" rx="5" fill="#f5f5f5" stroke="#222" stroke-width="1.5"/>
+    <text class="node" x="52" y="667">当前已实现</text>
+    <text class="body" x="52" y="690">类型协议与 JSON Schema · SQLite 门禁历史与重启恢复</text>
+  </g>
+</svg>

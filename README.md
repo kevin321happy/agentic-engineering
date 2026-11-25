@@ -27,9 +27,11 @@ The design separates model suggestions from permission to act. A recorded approv
 
 ## System architecture
 
-This is the target design. The outlined foundation section shows what exists today. The public core does not depend on project-specific integrations. Retrieved knowledge can suggest checks; it cannot satisfy them.
+The diagram shows the target design. **OpenSpec is the single entry point for specifications**, acceptance scenarios, and implementation tasks. Agentic Engineering coordinates feature and bugfix workflows. After a human approves the spec revision and scope, a coding agent uses TDD in a sandbox to produce a candidate patch.
 
-![System architecture](docs/diagrams/architecture.en.svg)
+A restricted executor applies the patch with a one-time grant tied to its digest and spec revision. CI independently verifies the exact candidate commit. The delivery gate either sends the change to human review or pauses it. The bottom of the diagram shows the protocols and gate ledger available today. Project-specific tools connect to the public core through adapters.
+
+![Enterprise coding delivery architecture with OpenSpec, approvals, TDD, CI gates, and the implemented foundation](docs/diagrams/architecture.en.svg)
 
 ## How a task moves through the platform (planned)
 
@@ -41,7 +43,7 @@ This is the target design. The outlined foundation section shows what exists tod
 | --- | --- |
 | M1.1 · Human approval and resume **(next)** | Recover the pending spec revision after restart. Adding a retry button requires approval of the revised scope. A patch execution grant applies to one version and can be consumed once. |
 | M1.2 · Permissions and offline replay | Deny unauthorized writes. Replay the same events without credentials or external side effects and reproduce the same decision. |
-| M2 · Feature workflow | Demonstrate the list example three ways: pass the correct patch, block missing regression coverage, and block an out-of-scope edit. |
+| M2 · Feature workflow | Run the list example through OpenSpec. Send a correct patch to review, pause when regression evidence is missing, and block an out-of-scope edit. |
 | M3 · Bugfix workflow | Show the original failure before the fix, a passing check afterward, and an unaffected control case. A high score cannot override missing evidence. |
 | M4 · CLI and evaluation | A new contributor can run, inspect, resume and replay both an allowed and a blocked case. Report raw counts for incorrect decisions and human interventions. |
 | M5 · Private extensions | Connect knowledge and tools through public interfaces without modifying the core or exposing private artifacts. |
