@@ -29,6 +29,10 @@ agentic = "agentic_engineering.cli.main:app"
 [tool.hatch.build.targets.wheel]
 packages = ["src/agentic_engineering"]
 
+[tool.hatch.build.targets.wheel.force-include]
+"schemas/spec.schema.json" = "agentic_engineering/schemas/spec.schema.json"
+"schemas/evidence.schema.json" = "agentic_engineering/schemas/evidence.schema.json"
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-ra"

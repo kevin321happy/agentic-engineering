@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 730" width="820" height="730" role="img" aria-labelledby="title desc" xml:lang="en">
+  <title id="title">Enterprise coding delivery architecture</title>
+  <desc id="desc">OpenSpec supplies the spec. Agentic Engineering manages human approval, one-time authorization, and delivery decisions. Coding agents and CI supply changes and evidence. The implemented foundation is shown at the bottom.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M1 1l6 3-6 3" fill="none" stroke="#222" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <style>
+      .title { font-size: 27px; font-weight: 700; }
+      .section { font-size: 14px; font-weight: 650; }
+      .node { font-size: 17px; font-weight: 650; }
+      .body { font-size: 14px; font-weight: 400; }
+      .box { fill: #fff; stroke: #999; }
+      .edge { fill: none; stroke: #222; stroke-width: 1.35; marker-end: url(#arrow); }
+    </style>
+  </defs>
+  <rect width="820" height="730" rx="12" fill="#fff"/>
+  <g font-family="system-ui, PingFang SC, Microsoft YaHei, sans-serif" fill="#181818">
+    <text class="title" x="36" y="42">Enterprise coding delivery architecture</text>
+    <text class="body" x="36" y="70">Target design · from specification to controlled execution and review</text>
+
+    <rect class="box" x="36" y="96" width="748" height="72" rx="5"/>
+    <text class="node" x="52" y="126">Ticket / PRD / defect report → OpenSpec</text>
+    <text class="body" x="52" y="150">Single spec entry point · deltas, acceptance scenarios, and tasks</text>
+
+    <text class="section" x="36" y="212">Delivery controls · Agentic Engineering</text>
+    <text class="section" x="434" y="212">Execution and verification</text>
+    <path class="edge" d="M365 168v60"/>
+    <path class="edge" d="M386 262h48"/>
+    <path class="edge" d="M609 296v12H211v12"/>
+    <path class="edge" d="M386 354h48"/>
+    <path class="edge" d="M609 388v24"/>
+    <path class="edge" d="M434 446h-48"/>
+    <path class="edge" d="M211 480v46"/>
+    <path class="edge" d="M211 504h398v22"/>
+    <rect class="box" x="36" y="228" width="350" height="68" rx="5"/>
+    <text class="node" x="52" y="256">Workflow orchestration and approval</text>
+    <text class="body" x="52" y="279">Human approval for the spec revision and scope</text>
+    <rect class="box" x="434" y="228" width="350" height="68" rx="5"/>
+    <text class="node" x="450" y="256">Coding agent · TDD in a sandbox</text>
+    <text class="body" x="450" y="279">Run a failing test, implement, and rerun tests</text>
+    <rect class="box" x="36" y="320" width="350" height="68" rx="5"/>
+    <text class="node" x="52" y="348">Patch execution grant</text>
+    <text class="body" x="52" y="371">One use · spec revision and patch digest</text>
+    <rect class="box" x="434" y="320" width="350" height="68" rx="5"/>
+    <text class="node" x="450" y="348">Restricted executor</text>
+    <text class="body" x="450" y="371">Apply the patch and capture the commit and diff</text>
+    <rect class="box" x="36" y="412" width="350" height="68" rx="5"/>
+    <text class="node" x="52" y="440">Delivery gate</text>
+    <text class="body" x="52" y="463">Check diff, acceptance, and regression evidence</text>
+    <rect class="box" x="434" y="412" width="350" height="68" rx="5"/>
+    <text class="node" x="450" y="440">CI · Independent build and verification</text>
+    <text class="body" x="450" y="463">Bind evidence to the exact candidate commit</text>
+
+    <rect class="box" x="36" y="526" width="350" height="82" rx="5"/>
+    <text class="node" x="52" y="552">GO · Prepare a review packet</text>
+    <text class="body" x="52" y="574">Spec, actual diff, evidence, and gate decision</text>
+    <text class="body" x="52" y="595">Human code review and merge approval</text>
+    <rect class="box" x="434" y="526" width="350" height="82" rx="5"/>
+    <text class="node" x="450" y="552">NO_GO · Pause delivery</text>
+    <text class="body" x="450" y="574">Add evidence, narrow scope, or seek reapproval</text>
+
+    <rect x="36" y="638" width="748" height="67" rx="5" fill="#f5f5f5" stroke="#222" stroke-width="1.5"/>
+    <text class="node" x="52" y="667">Implemented foundation</text>
+    <text class="body" x="52" y="690">Typed protocols and JSON Schemas · SQLite gate history and restart recovery</text>
+  </g>
+</svg>
